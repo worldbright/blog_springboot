@@ -1,0 +1,35 @@
+
+<head>
+    <meta charset="UTF-8">
+    <title>without bootstrap</title>
+
+    <!-- 섬머노트 -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+    <link href="css/summernote-lite.min.css" rel="stylesheet" charset="utf-8">
+
+    <script src="js/summernote-lite.min.js"></script>
+    <script src="js/summernote-ko-KR.min.js"></script>
+</head>
+<body>
+<div id="summernote"></div>
+<script>
+      $('#summernote').summernote({
+        placeholder: 'Hello stand alone ui',
+        tabsize: 2,
+        height: 120,
+        toolbar: [
+          ['style', ['style']],
+          ['font', ['bold', 'underline', 'clear']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['table', ['table']],
+          ['insert', ['link', 'picture', 'video']],
+          ['view', ['fullscreen', 'codeview', 'help']]
+        ],
+        lang: "ko-KR"
+      });
+    </script>
+</body>
+</html>
+Basic AP

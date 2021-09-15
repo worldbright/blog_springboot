@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+  <title>Hello</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<style>
+ .fieldError {
+ border-color: #bd2130;
+ }
+</style>
+<body>
+<nav th:replace="fragments/bodyHeader :: bodyHeader" />
+<div class="container p-2" style="max-width:500px">
+  <form class="d-grid gap-3 p-3 bg-light rounded-3"role="form" action="/signup" th:object="${memberDTO}"
+        method="post">
+    <input type ="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+    <div class="fs-2 fw-bold text-center">회원가입</div>
+    <div class="form-group">
+      <label class="fw-bold mb-2" th:for="name">이름</label>
+      <input type="text" th:field="*{name}" class="form-control"
+             placeholder="이름"
+             th:class="${#fields.hasErrors('name')} ? 'form-control fieldError' : 'form-control'">
+      <p class="alert alert-danger mt-2 p-1" th:if="${#fields.hasErrors('name')}"
+         th:errors="*{name}"></p>
+    </div>
+    <div class="form-group">
+      <label class="fw-bold mb-2" th:for="email">이메일</label>
+      <input type="text" th:field="*{email}" class="form-control"
+             placeholder="worldbright0@gmail.com"
+             th:class="${#fields.hasErrors('email')} ? 'form-control fieldError' : 'form-control'">
+      <p class="alert alert-danger mt-2 p-1" th:if="${#fields.hasErrors('email')}"
+         th:errors="*{email}"></p>
+    </div>
+    <div class="form-group">
+      <label class="fw-bold mb-2" th:for="password">비밀번호</label>
+      <input type="password" th:field="*{password}" class="form-control"
+             placeholder="비밀번호(8자리 이상)"
+             th:class="${#fields.hasErrors('password')} ? 'form-control fieldError' : 'form-control'">
+      <p class="alert alert-danger mt-2 p-1" th:if="${#fields.hasErrors('password')}"
+         th:errors="*{password}"></p>
+    </div>
+    <div class="form-group">
+      <label class="fw-bold mb-2" th:for="password_confirm">비밀번호 확인</label>
+      <input type="password" th:field="*{password_confirm}" class="form-control"
+             placeholder="비밀번호 확인"
+             th:class="${#fields.hasErrors('password_confirm')} ? 'form-control fieldError' : 'form-control'">
+      <p class="alert alert-danger mt-2 p-1" th:if="${#fields.hasErrors('password_confirm')}"
+         th:errors="*{password_confirm}"></p>
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">가입</button>
+  </form>
+</div>
+<div th:replace="fragments/footer :: footer" />
+</div>
+</body>
+</html>

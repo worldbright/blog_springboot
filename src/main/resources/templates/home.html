@@ -1,10 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-등따시고 배부르면 잠와.
+    <nav th:replace="fragments/bodyHeader :: bodyHeader" />
+    <div class="d-grid gap-3 justify-content-center p-2 m-5">
+        <a th:href="@{/posts/{id} (id=${post.id})}" th:each="post : ${posts}" class="btn d-flex flex-column rounded-5" style="background-color:#eee; width:750px">
+            <div class="d-flex w-100 justify-content-start">
+                <div th:text="${post.title}" class="d-inline-block p-2 fw-bold fs-4 text-nowrap text-start" style="overflow:hidden; text-overflow: ellipsis; width:80%;">
+
+                </div>
+                <div class="p-2 fs-5 lh-1"style="width:20%">
+                <div th:text="${post.member.name}" class="d-inline-block text-nowrap text-end" style="overflow:hidden; text-overflow: ellipsis; width:100%">
+
+                </div>
+                <div th:text="${post.postDateString}" class="d-inline-block fs-6 text-nowrap text-end" style="overflow:hidden; text-overflow: ellipsis; width:100%">
+
+                </div>
+                </div>
+            </div>
+
+        </a>
+    </div>
+    <div th:replace="fragments/footer :: footer" />
+</div>
 </body>
 </html>
