@@ -23,6 +23,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final MemberService memberService;
     private final AuthenticationFailureHandler authenticationFailureHandler;
+
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
@@ -41,6 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/");
     }
+
     @Override protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(memberService).passwordEncoder(new BCryptPasswordEncoder());
     }

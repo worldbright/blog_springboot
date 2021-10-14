@@ -11,8 +11,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @ToString
 public class PostDTO {
-    private Long id;
-
     private LocalDateTime postDate;
     private Long memberId;
 

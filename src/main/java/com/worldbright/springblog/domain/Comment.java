@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 
 @Entity
@@ -15,10 +14,12 @@ public class Comment {
     @Column(name = "comment_id")
     private Long id;
 
-    @NotEmpty
+
+    private String memberName;
     private String content;
 
     private LocalDateTime commentDate;
+    private String commentDateString;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")

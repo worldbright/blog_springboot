@@ -25,6 +25,6 @@ class MemberServiceTest {
         Long savedId = memberService.join(member);
 
         em.flush();
-        assertEquals(member, memberService.findOne(savedId));
+        assertEquals(member, memberService.findById(savedId));
     }
 }

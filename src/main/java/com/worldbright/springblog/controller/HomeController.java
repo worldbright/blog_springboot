@@ -12,6 +12,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
@@ -24,9 +25,15 @@ public class HomeController {
     private final PostService postService;
     @RequestMapping("/")
     public String home(Model model, @AuthenticationPrincipal Member member) {
-        if(member != null)
-            model.addAttribute("name", member.getName());
-        model.addAttribute("posts", postService.findAll(Sort.by(Sort.Direction.DESC, "postDate")));
+        if(member != null) model.addAttribute("name", member.getName());
+        model.addAttribute("posts", postService.findAll_HomeController());
+        return "home";
+    }
+
+    @GetMapping("/search")
+    public String home(Model model, @AuthenticationPrincipal Member member, String keyword) {
+        if(member != null) model.addAttribute("name", member.getName());
+        model.addAttribute("posts", postService.findBySearchKeywordQueryDsl(keyword));
         return "home";
     }
 }

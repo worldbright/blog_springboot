@@ -1,15 +1,17 @@
 package com.worldbright.springblog.domain;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter @Setter
+@NoArgsConstructor
 public class PostTag {
     @Id
     @GeneratedValue
@@ -23,7 +25,7 @@ public class PostTag {
     @JoinTable(name = "post_posttag",
                 joinColumns = @JoinColumn(name = "posttag_id"),
                 inverseJoinColumns = @JoinColumn(name = "post_id"))
-    private List<Post> posts = new ArrayList<>();
+    private Set<Post> posts = new HashSet<>();
 
     public PostTag(String name) {
         this.name = name;

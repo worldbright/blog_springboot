@@ -9,9 +9,9 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+        <form class="d-flex" action="/search" method="GET">
+          <input name="keyword" class="form-control me-2" type="search" placeholder="제목, 내용, 태그">
+          <button class="btn btn-primary mb-2 mb-lg-0" type="submit" style="white-space:nowrap;">검색</button>
         </form>
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <a th:href="@{/post}" class="btn btn-primary me-3">글 작성</a>
@@ -22,8 +22,15 @@
             <a class="nav-link" th:href="@{/signup}">회원가입</a>
           </li>
           <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="${name}">
+            <sec:authorize property="principal" var="member"/>
+            <a class="nav-link dropdown-toggle"
+               href="#" id="navbarDropdown"
+               role="button"
+               data-bs-toggle="dropdown"
+               aria-expanded="false"
+               th:text="${name}">
             </a>
+            </sec>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" th:href="@{/logout}">로그아웃</a></li>
               <li><a class="dropdown-item" href="#">1</a></li>

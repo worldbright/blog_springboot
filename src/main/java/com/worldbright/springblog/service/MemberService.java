@@ -31,13 +31,26 @@ public class MemberService implements UserDetailsService {
         this.memberRepository = memberRepository;
         this.modelMapper = modelMapper;
 
-        if(!memberRepository.findById(1L).isPresent())
+        if(!memberRepository.findById(1L).isPresent()) {
             join(MemberDTO.builder()
                     .email("guest")
                     .name("익명")
                     .password("00000000")
                     .password_confirm("00000000")
                     .build());
+            join(MemberDTO.builder()
+                    .email("guest2")
+                    .name("익명2")
+                    .password("00000000")
+                    .password_confirm("00000000")
+                    .build());
+            join(MemberDTO.builder()
+                    .email("guest3")
+                    .name("익명3")
+                    .password("00000000")
+                    .password_confirm("00000000")
+                    .build());
+        }
     }
 
     @Transactional
@@ -59,7 +72,7 @@ public class MemberService implements UserDetailsService {
     }
 
     public List<Member> findUsers() { return memberRepository.findAll(); }
-    public Member findOne(Long userId) { return memberRepository.findById(userId).get(); }
+    public Optional<Member> findById(Long userId) { return memberRepository.findById(userId); }
 
     @Override
     public Member loadUserByUsername(String username) throws UsernameNotFoundException {

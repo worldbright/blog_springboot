@@ -1,6 +1,5 @@
 package com.worldbright.springblog.service;
 
-import com.worldbright.springblog.domain.Post;
 import com.worldbright.springblog.domain.PostTag;
 import com.worldbright.springblog.repository.PostTagRepository;
 import lombok.RequiredArgsConstructor;
